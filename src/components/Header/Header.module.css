@@ -1,0 +1,101 @@
+.Searchbar {
+  top: 0;
+  left: 0;
+  position: sticky;
+  z-index: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 960px;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding-right: 35px;
+  padding-left: 35px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: linear-gradient(
+    8deg,
+    rgb(0, 0, 40) -20%,
+    rgb(30, 0, 30) 20%,
+    rgb(50, 30, 40) 60%,
+    rgb(40, 180, 220) 140%
+  );
+  filter: blur(0.4px);
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  filter: blur(0.5px);
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: aliceblue;
+  width: 1100px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0px auto;
+}
+
+.Logo {
+  width: 80px;
+  filter: blur(0.5px);
+  margin-left: 120px;
+  margin-right: 20px;
+}
+
+.SearchForm {
+  background: linear-gradient(
+    90deg,
+    rgb(230, 240, 250) 28%,
+    rgb(200, 240, 250) 64%,
+    rgb(228, 228, 200) 82%,
+    rgb(28, 0, 28) 96%
+  );
+  display: flex;
+  align-items: center;
+  min-width: 400px;
+  border-radius: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.SearchForm__input {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 22px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: rgb(50, 28, 50);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.navbar {
+  width: 220px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.NavLink {
+  font-style: unset;
+  font-weight: 500;
+  font-size: 26px;
+  color: transparent;
+  background: linear-gradient(28deg, rgb(200, 190, 190) 10%, rgb(70, 210, 190));
+  background-clip: text;
+  filter: blur(0.5px);
+  padding: 0 5px 0 5px;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.NavLinkActive {
+  text-decoration: underline;
+  color: rgb(100, 220, 220);
+  text-shadow: rgb(200, 190, 190) 0.2px 0.2px 4px;
+}

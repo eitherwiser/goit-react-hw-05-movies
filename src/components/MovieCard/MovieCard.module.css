@@ -1,0 +1,86 @@
+li {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+
+  position: relative;
+  padding: 1px;
+  margin-top: 26px;
+  margin-left: 30px;
+  flex-basis: auto;
+
+  background: linear-gradient(
+    128deg,
+    rgb(250, 240, 200) -20%,
+    #782864 40%,
+    #28b4dc 110%
+  );
+  border-radius: 6px;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 0.6);
+  width: 190px;
+  height: 340px;
+}
+.Link {
+  text-decoration: none;
+  color: #5c2a70;
+}
+
+.card_border {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+  background: #fff;
+  width: 186px;
+  height: 336px;
+  margin: 1px;
+  padding: 1px;
+}
+
+.item_img {
+  min-width: 182px;
+  min-height: 278px;
+  display: block;
+  width: 100%;
+  max-height: 398px;
+  border-radius: 6px;
+}
+
+.img_title {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+.item_info {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.33;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.item:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+
+  box-shadow: 0 0 10px rgba(213, 218, 218, 0.993);
+}
+
+.rating {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 20px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.17;
+  color: #fff;
+  background-color: #5c2a70;
+  border-radius: 5px;
+}
