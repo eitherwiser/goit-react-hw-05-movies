@@ -1,20 +1,18 @@
-import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
+import { useSearchParams, useNavigate, useLocation} from 'react-router-dom'; 
 import { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import MovieList from '../../components/MovieList/MovieList.jsx';
 import Button from '../../components/Button/Button.jsx'
-import {  searshMovies } from '../../services/themoviedbjs.js';
+import Loader from '../../components/Loader/Loader.jsx'
+import {  searshMovies } from '../../services/themoviedb.js';
 
 
 
-
-export default function MoviesPage() {
-//export default function MoviesPage({ query, page, pageIncrement}) {
+export default function MoviesPage({getMoviesLocation}) {
 
   const [movies, setMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  //const [query, setQuery] = useState('');
-  //const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
     
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("query");
@@ -22,55 +20,45 @@ export default function MoviesPage() {
 
   const navigate = useNavigate();
   const prevQueryRef = useRef();
+  const location = useLocation();
 
-
-  useEffect(() => { 
-    console.log({ searchQuery, searchPage })
-    console.log(prevQueryRef.current)
+  useEffect(() => {
     if (searchQuery && { searchQuery, searchPage } !== prevQueryRef.current) {
+      setIsLoading(true);
       searshMovies(searchQuery, searchPage)
         .then(res => {
           if (!res || !res.total_results) {
-          toast.error(`is no results with "${searchQuery}" .`);
-          navigate(-1);
-          return
+            toast.error(`is no results with "${searchQuery}" .`);
+            navigate(-1);
+            return
           }
           if (searchQuery && Number(searchPage) === 1) {
             prevQueryRef.current = { searchQuery, searchPage };
-            setMovies(res.results);
             setTotalPages(res.total_pages)
+            setMovies(res.results);
           }
           if (searchQuery && Number(searchPage) > 1) {
-            prevQueryRef.current = {searchQuery, searchPage}
-            setMovies(movies.concat(res.results));
+            prevQueryRef.current = { searchQuery, searchPage }
             setTotalPages(res.total_pages);
+            setMovies(movies.concat(res.results));
           }
+        })
+        .catch(() => {
+          toast.error(`Server not response. Please try later .`)
+          setIsLoading(false);
       })
     }
-  }, [searchQuery, searchPage])
+  }, [searchQuery, searchPage]);
 
 
-  //useEffect(() => {
+  useEffect(() => {
+    console.log(location)
+    getMoviesLocation(location);
+  }, [location]);
 
-  //      if (query !== '' && query !== prevQueryRef.current) {
-  //      searshMovies(query, page).then(res => {
-  //      if (!res || !res.total_results) {
-  //        toast.error(`is no results with ${query}`);
-  //        navigate(-1, setQuery(prevQueryRef.current));
-  //        return
-  //      }
-  //      else if (Number(page) === 1 && query) {
-  //        setMovies(res.results);
-  //        setTotalPages(res.total_pages)
-  //      }
-  //      else if (Number(page) > 1) {
-  //        setMovies(movies.concat(res.results));
-  //        setTotalPages(res.total_pages);
-  //      }
-  //    })
-  //  }
-  //}, [query, page] )
-
+  useEffect(() => {
+    setIsLoading(false)
+  }, [movies]);
 
   const pageIncrement = () => {
     setSearchParams({ query: searchQuery, page: Number(searchParams.get("page")) + 1 })
@@ -79,78 +67,14 @@ export default function MoviesPage() {
   return (
     <>
     <h1 className="hidden-element">MoviesPage</h1>
-    <h2>Trends movies on this week</h2>
-      <MovieList key={Date.now()} movies={movies} viewMovieInfo="viewMovieInfo" />
-      <Button onClick={() => pageIncrement()} > <span>Load more</span> </Button>
+      {!(!movies.length) && !isLoading && <h2>You'r looking for &nbsp;"&nbsp;<i>{searchQuery}</i> &nbsp;" ...</h2>}
+      {isLoading && Number(searchPage) === 1 && <Loader />}
+      <MovieList key={Date.now()} movies={movies} viewMovieInfo="viewMovieInfo"/>
+      {isLoading && Number(searchPage) > 1 && <Loader />}
+      {!(!movies.length) && (totalPages - Number(searchPage)) > 20 && !isLoading &&
+        <Button onClick={() => pageIncrement()} > <span>Load more</span> </Button>
+      }
     </>
   ) 
 }
 
-
-
-
-
-
-  //useEffect(() => {
-
-  //  console.log(searchParams.get("query"));
-  //  console.log(searchParams.get("page"))
-
-  //  (function () {
-  //    let q = searchParams.get("query")
-  //    if (q && q !== query) {
-  //      prevQueryRef.current = query; 
-  //      setQuery(q);
-  //    } return
-  //  }());
-
-  //  (function () {
-  //    let p = searchParams.get("page")
-  //    if (p && p !== page && prevQueryRef.current) {
-  //      setPage(p);
-  //    } return
-  //  }());
-
-  //});
-
-
-
-
-  //useEffect(() => {
-        //if (query !== '' && query !== prevQueryRef.current) {
-        //searshMovies(query, page).then(res => {
-        //if (!res || !res.total_results) {
-        //  toast.error(`is no results with ${query}`);
-        //  navigate(-1, setQuery(prevQueryRef.current));
-        //  return
-        //}
-        //else if (Number(page) === 1 && query) {
-        //  setMovies(res.results);
-        //  setTotalPages(res.total_pages)
-        //}
-        //else if (Number(page) > 1) {
-        //  setMovies(movies.concat(res.results));
-        //  setTotalPages(res.total_pages);
-        //}
-      //})
-    //}
-  //}, )
-
-
-
-      //if (query !== '') {
-    //  searshMovies(query, page).then(res => {
-    //    if (!res || res.results === []) {
-    //      toast.error(`is no results with ${query}`);
-    //      return
-    //    }
-    //    else if (Number(page) === 1 && query) {
-    //      setMovies(res.results);
-    //      setTotalPages(res.total_pages)
-    //    }
-    //    else if (Number(page) > 1) {
-    //      setMovies(movies.concat(res.results));
-    //      setTotalPages(res.total_pages);
-    //    }
-    //  })
-    //}

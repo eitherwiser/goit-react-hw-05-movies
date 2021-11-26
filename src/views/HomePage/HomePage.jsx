@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useLocation} from 'react-router-dom'; 
 import MovieList from '../../components/MovieList/MovieList.jsx';
 import { toast } from 'react-toastify';
-import { getMoviesTopWeek } from '../../services/themoviedbjs.js';
+import Loader from '../../components/Loader/Loader.jsx'
+import { getMoviesTopWeek } from '../../services/themoviedb.js';
 
 
-export default function HomePage({ viewMovieInfo, movieId }) {
+export default function HomePage({ getMoviesLocation }) {
 
   const [moviesTopWeek, setMoviesTopWeek] = useState([]);
 
+  const location = useLocation();
 
   useEffect(() => {
     moviesTopWeek.length === 0 && 
@@ -20,12 +23,18 @@ export default function HomePage({ viewMovieInfo, movieId }) {
       });
   });
 
+  useEffect(() => {
+    console.log(location)
+    getMoviesLocation(location);
+  }, [location]);
+
 
   return (
     <>
       <h1 className="hidden-element">HomePage</h1>
-      <h2>Trends movies on this week</h2>
-      <MovieList key={Date.now()} movies={moviesTopWeek} viewInfo={viewMovieInfo}/>
+      {(!moviesTopWeek.length) && <Loader />}
+      {!(!moviesTopWeek.length) && <h2>Trends movies on this week</h2>}
+      <MovieList key={Date.now()} movies={moviesTopWeek} />
     </>
   ) 
 }

@@ -1,0 +1,36 @@
+.item_list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  height: 260px;
+  width: 140px;
+  border: solid 0.1px rgb(113, 61, 113);
+  border-radius: 5px;
+  margin-left: 20px;
+  margin-top: 20px;
+  padding: 1px;
+  align-items: center;
+}
+
+.avatar {
+  width: 138px;
+  height: 200px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 2px;
+  color: #280a2886;
+}

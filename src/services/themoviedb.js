@@ -10,8 +10,18 @@ const usual = () => {
 };
 
 async function getMovie(id) {
-  return axios.get(`/movie/${id}?${usual()}`);
-  //.then(r => r.data)
+  let { data } = await axios.get(`/movie/${id}?${usual()}`);
+  return data;
+}
+
+async function getReviews(id) {
+  let { data } = await axios.get(`movie/${id}/reviews?${usual()}`);
+  return data;
+}
+
+async function getCast(id) {
+  let { data } = await axios.get(`movie/${id}/credits?${KEY}`);
+  return data;
 }
 
 async function searshMovies(query, page) {
@@ -23,13 +33,7 @@ async function searshMovies(query, page) {
 
 async function getMoviesTopWeek() {
   let { data } = await axios.get(`/trending/movie/week?${usual()}}`);
-  console.log(data);
   return data;
 }
 
-//async function getPersonsTopWeek() {
-//  const { data } = await axios.get(`/trending/person/week?${usual()}`);
-//  return data;
-//}
-
-export { searshMovies, getMovie, getMoviesTopWeek };
+export { searshMovies, getMovie, getMoviesTopWeek, getReviews, getCast };

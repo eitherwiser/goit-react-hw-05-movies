@@ -49,12 +49,6 @@ h2 {
   margin-top: 20px;
 }
 
-p {
-  text-align: center;
-  max-width: 400px;
-  margin-top: 20px;
-}
-
 #root {
   color: rgb(82, 28, 82);
 }
@@ -67,4 +61,32 @@ p {
   padding-left: 15px;
   padding-right: 15px;
   margin: 0px auto;
+}
+
+::selection {
+  background: rgb(131, 61, 131);
+  color: #fff;
+}
+
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgb(131, 61, 131);
+  color: #fff;
+  padding: 0.5em;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
+  pointer-events: none;
+  opacity: 0;
+  transition: 1s;
+  transition-delay: 1s;
+  transition-property: opacity;
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
 }

@@ -1,4 +1,4 @@
-li {
+.item {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
@@ -23,6 +23,7 @@ li {
 .Link {
   text-decoration: none;
   color: #5c2a70;
+  line-height: 1.33;
 }
 
 .card_border {
@@ -35,6 +36,7 @@ li {
   height: 336px;
   margin: 1px;
   padding: 1px;
+  line-height: 1.33;
 }
 
 .item_img {
@@ -47,9 +49,17 @@ li {
 }
 
 .img_title {
+  max-width: 176px;
+  text-align: center;
+  display: block;
   font-weight: 700;
   font-size: 12px;
   line-height: 1.33;
+  overflow: hidden;
+  line-clamp: 2;
+  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   text-transform: uppercase;
   margin-top: 5px;
 }
@@ -59,6 +69,7 @@ li {
   line-height: 1.33;
   text-align: center;
   margin-top: 5px;
+  text-overflow: ellipsis;
 }
 
 .item:hover {

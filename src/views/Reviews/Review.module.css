@@ -1,0 +1,56 @@
+.item_list {
+  max-width: 900px;
+  list-style: none;
+  padding: 10px;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  padding: 10px;
+  border: solid 0.1px rgba(49, 28, 82, 0.6);
+  border-radius: 5px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  margin-left: 30px;
+  border-radius: 50%;
+  background-color: rgba(49, 28, 82, 0.6);
+}
+
+.rating {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  top: 10px;
+  left: 92px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: darkmagenta;
+  background: goldenrod;
+}
+
+.username {
+  position: absolute;
+  top: 28px;
+  left: 160px;
+  width: auto;
+  height: 24px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.review {
+  margin: 5px 0 5px 0;
+  text-align: justify;
+  padding: 5px;
+  background: rgba(210, 200, 210, 0.1);
+  border-radius: 5px;
+}
