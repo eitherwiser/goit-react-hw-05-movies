@@ -54,10 +54,10 @@ export default function Reviews() {
           </li>
         )
       }
-      {!reviews.length && !isLoading &&
+      {!!reviews.length && !isLoading &&
         <h4>Sorry, is no any reviews there yet. </h4>
       }
-      {isLoading && <Loader />   }
+      {isLoading && <Loader />}
     </ul>
   ) 
 }

@@ -80,8 +80,7 @@ export default function MovieDetailPage({moviesLocation}) {
           </Routes>
         </div>
       }
-      {isLoading && <Loader />
-      }
+      {isLoading && <Loader />}
     </>
   ) 
 }

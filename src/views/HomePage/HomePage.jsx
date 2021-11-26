@@ -21,10 +21,9 @@ export default function HomePage({ getMoviesLocation }) {
           }
         setMoviesTopWeek(res.results);
       });
-  });
+  }, []);
 
   useEffect(() => {
-    console.log(location)
     getMoviesLocation(location);
   }, [location]);
 

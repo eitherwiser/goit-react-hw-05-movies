@@ -15,10 +15,8 @@ export default function Caste() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
     getCast(params.movie_id)
       .then(res => {
-        console.log(res)
         setCast(res.cast)
       })
       .catch(() => {
@@ -33,10 +31,8 @@ export default function Caste() {
   }, [cast]);
 
   return (
-    <>
-      {cast && !isLoading &&
       <ul className={s.item_list}>
-        {cast.map(item => 
+        {cast && !isLoading && cast.map(item => 
             <li key={item.id} className={s.item}>
                 <div className="s.avatar__wrapper">
                   {item.profile_path &&
@@ -50,13 +46,11 @@ export default function Caste() {
             </li>
           )
         }
-      </ul>
-      }
-      {isLoading && <Loader />}
-      {!cast.length && !isLoading &&
+      {!!cast.length && !isLoading &&
         <h4>Sorry, is no any reviews there yet. </h4>
       }
-    </>
+      {isLoading && <Loader />}
+    </ul>
   )
 }
 
