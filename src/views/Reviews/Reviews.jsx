@@ -15,16 +15,13 @@ export default function Reviews() {
 
   useEffect(() => {
     getReviews(params.movie_id)
-      .then(res => { setReviews(res.results) })
+      .then(res => { setReviews(res.results, setIsLoading(false))})
       .catch(() => {
         toast.error(`Server not response. Please try later .`)
           setIsLoading(false);
       })
   }, []);
 
-  useEffect(() => {
-    setIsLoading(false)
-  }, [reviews]);
 
   const parseAvatar = (a) => {
     let x = "http";
@@ -43,7 +40,7 @@ export default function Reviews() {
               {item.author_details.avatar_path &&
                 <img className={s.avatar} src={parseAvatar(item.author_details.avatar_path)} alt={item.author_details.username} />}
               {!item.author_details.avatar_path &&
-                <NoImg className={s.avatar} />}
+                <div className={s.avatar}>< NoImg /></div> }
               {!!item.author_details.rating &&
                 <span className={s.rating}>{item.author_details.rating}</span>}
               <span className={s.username}>{item.author_details.username}</span>
@@ -54,8 +51,8 @@ export default function Reviews() {
           </li>
         )
       }
-      {!!reviews.length && !isLoading &&
-        <h4>Sorry, is no any reviews there yet. </h4>
+      {!reviews.length && !isLoading &&
+        <h4>Sorry, is no any reviews there yet.  </h4>
       }
       {isLoading && <Loader />}
     </ul>

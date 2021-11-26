@@ -52,7 +52,6 @@ export default function MoviesPage({getMoviesLocation}) {
 
 
   useEffect(() => {
-    console.log(location)
     getMoviesLocation(location);
   }, [location]);
 

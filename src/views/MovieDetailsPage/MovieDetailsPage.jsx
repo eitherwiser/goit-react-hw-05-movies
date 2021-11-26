@@ -51,14 +51,14 @@ export default function MovieDetailPage({moviesLocation}) {
             {movieInfo.poster_path && <img className={s.movie_poster} src={`https://image.tmdb.org/t/p/w500/${movieInfo.poster_path}`} alt={movieInfo.title} />}
             {!movieInfo.poster_path && <NoImg className={s.no_movie_poster} />}
             <div className={s.movie_info}>
-              <h2>{movieInfo.title}</h2>
-              <h4>{movieInfo.tagline}</h4>
+              <span className={s.title}>{movieInfo.title}</span>
+              <span className={s.tagline}>{movieInfo.tagline}</span>
 
               <p className={s.movie_overview}>&nbsp;&nbsp;{movieInfo.overview}</p>
               <hr/>
-              <p>Genre: &nbsp;{movieInfo.genres.map(item => <span className={s.genre} key={item.id}>&nbsp;{item.name};&nbsp;</span>)}</p>
-              <p>Release: &nbsp;{movieInfo.release_date}</p>
-              <p>Popularity: {movieInfo.popularity}&nbsp; | &nbsp; Vote average: {movieInfo.vote_average}</p>
+              <p className={s.detail_info}>Genre: &nbsp;{movieInfo.genres.map(item => <span className={s.genre} key={item.id}>&nbsp;{item.name};&nbsp;</span>)}</p>
+              <p className={s.detail_info}>Release: &nbsp;{movieInfo.release_date}</p>
+              <p className={s.detail_info}>Popularity: {movieInfo.popularity}&nbsp; | &nbsp; Vote average: {movieInfo.vote_average}</p>
               <div className={s.advanced_movie_info}>
                 <NavLink to='cast' className={({ isActive })  => s.NavLink + (isActive ? (" " + s.NavLinkActive) : '')}>Cast</NavLink>
                 <NavLink to='reviews' className={({ isActive })  => s.NavLink + (isActive ? (" " + s.NavLinkActive) : '')} >Reviews</NavLink>

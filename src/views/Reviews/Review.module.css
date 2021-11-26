@@ -1,10 +1,15 @@
 .item_list {
+  display: flex;
+  flex-wrap: wrap;
   max-width: 900px;
-  list-style: none;
   padding: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .item {
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -12,6 +17,13 @@
   padding: 10px;
   border: solid 0.1px rgba(49, 28, 82, 0.6);
   border-radius: 5px;
+}
+
+.avatar__wrapper {
+  display: flex;
+  align-items: baseline;
+  justify-content: baseline;
+  width: 100%;
 }
 
 .avatar {

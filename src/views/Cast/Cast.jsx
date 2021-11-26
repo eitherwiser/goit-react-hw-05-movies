@@ -17,7 +17,7 @@ export default function Caste() {
   useEffect(() => {
     getCast(params.movie_id)
       .then(res => {
-        setCast(res.cast)
+        setCast(res.cast, setIsLoading(false))
       })
       .catch(() => {
         toast.error(`Server not response. Please try later .`)
@@ -25,10 +25,6 @@ export default function Caste() {
       })
   }, []);
     
-
-  useEffect(() => {
-    setIsLoading(false)
-  }, [cast]);
 
   return (
       <ul className={s.item_list}>
@@ -46,7 +42,7 @@ export default function Caste() {
             </li>
           )
         }
-      {!!cast.length && !isLoading &&
+      {!isLoading && !cast.length &&
         <h4>Sorry, is no any reviews there yet. </h4>
       }
       {isLoading && <Loader />}
